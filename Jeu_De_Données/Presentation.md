@@ -23,7 +23,9 @@ Notre jeu de donnée comprend les 248 items du jeu. Il faut savoir que certains 
 
 
 
-
+<img src="MCD.png"
+     alt="MCD"
+     style="float: left; margin-right: 40px;" />
 
 
 
