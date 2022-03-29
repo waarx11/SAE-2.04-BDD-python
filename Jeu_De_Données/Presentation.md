@@ -27,6 +27,12 @@ Notre jeu de donnée comprend les 248 items du jeu. Il faut savoir que certains 
      alt="MCD"
      style="float: left; margin-right: 40px;" />
 
+<br>
 
-
-
+```mermaid
+graph TD;
+     A-->B;
+     A-->C;
+     B-->D;
+     C-->D;
+```
