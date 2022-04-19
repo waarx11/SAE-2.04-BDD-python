@@ -68,7 +68,9 @@ Comparaison de camembert :
 ```mermaid
 graph TD;
      POSSEDE-->CHAMPION;
+
      POSSEDE-->ITEMS;
      SUPERIEUR-->ITEMS;
      SUPERIEUR-->ITEMS;
+
 ```

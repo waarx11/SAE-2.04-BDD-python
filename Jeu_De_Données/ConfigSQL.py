@@ -35,31 +35,31 @@ def creationTab():
     critique NUMERIC
     );''')
 
-    curs.execute ('''CREATE TABLE tLevelUP(
-    idChampion CHAR(4) REFERENCES tChampion(cle),
-    hP NUMERIC NOT NULL,
-    mana NUMERIC,
-    armure NUMERIC,
-    resMagique NUMERIC,
-    regenMana NUMERIC,
-    regenHp NUMERIC,
-    dommageAutoAtq NUMERIC,
-    critique NUMERIC,
-    PRIMARY KEY(idChampion)
-    );''')
+    # curs.execute ('''CREATE TABLE tLevelUP(
+    # idChampion CHAR(4) REFERENCES tChampion(cle),
+    # hP NUMERIC NOT NULL,
+    # mana NUMERIC,
+    # armure NUMERIC,
+    # resMagique NUMERIC,
+    # regenMana NUMERIC,
+    # regenHp NUMERIC,
+    # dommageAutoAtq NUMERIC,
+    # critique NUMERIC,
+    # PRIMARY KEY(idChampion)
+    # );''')
 
-    curs.execute ('''CREATE TABLE tItem(
-    iDItem CHAR(5) PRIMARY KEY,
-    nom VARCHAR(50) NOT NULL,
-    prixAchat NUMERIC NOT NULL,
-    prixVente NUMERIC NOT NULL,
-    libelle VARCHAR(200) NOT NULL
-    );''')
+    # curs.execute ('''CREATE TABLE tItem(
+    # iDItem CHAR(5) PRIMARY KEY,
+    # nom VARCHAR(50) NOT NULL,
+    # prixAchat NUMERIC NOT NULL,
+    # prixVente NUMERIC NOT NULL,
+    # libelle VARCHAR(200) NOT NULL
+    # );''')
 
-    curs.execute ('''CREATE TABLE tPossede(
-    idChampion CHAR(4) REFERENCES tChampion(cle),
-    seperieur CHAR(5) REFERENCES tItem(iDItem)
-    );''')
+    # curs.execute ('''CREATE TABLE tPossede(
+    # idChampion CHAR(4) REFERENCES tChampion(cle),
+    # seperieur CHAR(5) REFERENCES tItem(iDItem)
+    # );''')
 
     # curs.execute ('''CREATE TABLE tSupp(
     # idItem CHAR(5) REFERENCES tItem(iDItem)
@@ -69,43 +69,40 @@ def creationTab():
     for row in df12.itertuples():
         curs.execute('''INSERT INTO tChampion VALUES (%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s);''',
                 (row.key , row.name , row.info.attack , row.info.defense , row.info.magic , row.stats.hp , row.stats.mp , row.stats.armor , row.stats.spellblock , row.stats.attackrange , row.stats.movespeed , row.stats.attackspeed , row.stats.mpregen , row.stats.hpregen , row.stats.attackdamage , row.stats.crit))
-        curs.execute('''INSERT INTO tLevelUP VALUES (%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s);''',
-                (row.key , row.stats.hpperlevel , row.stats.mpperlevel , row.stats.armorperlevel , row.stats.spellblockperlevel , row.stats.mpregenperlevel , row.stats.hpregenperlevel , row.stats.attackdamageperlevel , row.stats.critperlevel)) 
-    for row in df22.itertuples():
-        curs.execute('''INSERT INTO tItem VALUES (%s ,%s ,%s ,%s ,%s);''',
-                (row.item_id , row.name , row.buy_price , row.sell_price , row.explain))
-    res = curs.fetchone ()#prend une ligne de mon curs
-    while res is not None:# temps qu'il y a des éléments / lignes dans le fetchone
-        print (res)
-        res = curs.fetchone ()
+    #     curs.execute('''INSERT INTO tLevelUP VALUES (%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s);''',
+    #             (row.key , row.stats.hpperlevel , row.stats.mpperlevel , row.stats.armorperlevel , row.stats.spellblockperlevel , row.stats.mpregenperlevel , row.stats.hpregenperlevel , row.stats.attackdamageperlevel , row.stats.critperlevel)) 
+    # for row in df22.itertuples():
+    #     curs.execute('''INSERT INTO tItem VALUES (%s ,%s ,%s ,%s ,%s);''',
+    #             (row.item_id , row.name , row.buy_price , row.sell_price , row.explain))
+    # res = curs.fetchone ()#prend une ligne de mon curs
+    # while res is not None:# temps qu'il y a des éléments / lignes dans le fetchone
+    #     print (res)
+    #     res = curs.fetchone ()
     df=pd.read_sql('''SELECT COUNT(*) FROM tChampion ;''', con=co)
     print(df)
 
-    curs.execute('''SELECT COUNT(*) FROM tChampion);''',)
+
+# def requeteSQL():
+
+#     df=pd.read_sql('''SELECT COUNT(*) FROM tChampion ;''', con=co)
+#     print(df)
+
+#     df=pd.read_sql('''SELECT * FROM CHAMPION WHERE ID='Blitz' ;''', con=co)
+#     print(df)
+
+#     df=pd.read_sql('''SELECT MAX(Dégat) FROM tChampion ;''', con=co)
+#     print(df)
+
+#     df=pd.read_sql('''SELECT MAX(Dégat) FROM tChampion ;''', con=co)
+#     print(df)
+
+#     df=pd.read_sql('''SELECT MAX(Dégat) FROM tChampion ;''', con=co)
+#     print(df)
 
 
-def requeteSQL():
+ident=input("Entrer votre identifiant :")
 
-    df=pd.read_sql('''SELECT COUNT(*) FROM tChampion ;''', con=co)
-    print(df)
-
-    df=pd.read_sql('''SELECT * FROM CHAMPION WHERE ID='Blitz' ;''', con=co)
-    print(df)
-
-    df=pd.read_sql('''SELECT MAX(Dégat) FROM tChampion ;''', con=co)
-    print(df)
-
-    df=pd.read_sql('''SELECT MAX(Dégat) FROM tChampion ;''', con=co)
-    print(df)
-
-    df=pd.read_sql('''SELECT MAX(Dégat) FROM tChampion ;''', con=co)
-    print(df)
-
-
-
-ident=input("Entrer votre identifiant ")
-
-print ("Entrer votre mot de pass ")
+print ("Entrer votre mot de pass !")
 password = getpass()
 
 co = None
@@ -121,8 +118,8 @@ try:
 
     curs = co.cursor()
     
-    creationTab
-    requeteSQL
+    creationTab()
+    # requeteSQL()
 
     co.commit ()
     curs.close ()
