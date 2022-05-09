@@ -12,42 +12,48 @@ Lien de notre bases de données [LOL-Champions and Item](https://www.kaggle.com/
 <br>
 
 ## Personnages
-
-Il faut savoir que notre jeu donnée comprend les 149 personnages du jeu. Il faut savoir que celui-ci propose des caractériser les personnage pas genre (ex : *Mage*, *Tank*, ...), mais nous avons aussi les caractéristique des personnages (ex : hp, distance d'attaque, attaque, armure, ...).
+<br>
+Il faut savoir que notre jeu donnée comprend les 149 personnages du jeu et que celui-ci propose des caractériser les personnage par genre (ex : *Mage*, *Tank*, ...), mais nous avons aussi les caractéristique des personnages (ex : hp, distance d'attaque, attaque, armure, ...), nous aurons en plus l'augmentation des attributs de chaque personnage. <br>Ex: un personnage a 10 point de vie, en augmentent de niveau, ses points de vie augmente de 5.<br>
+Aussi un jeu de donnée des items qu'on va devoir assimilé aux personnages.
 
 <br>
 
 ## Objet
 
+<br>
+
 Notre jeu de donnée comprend les 248 items du jeu. Il faut savoir que certains item ont  
 
-## Idées-Requete
+<br>
 
-1- Afficher le nombre de champion au total
-2- Afficher l'identifiant "blitzcrank"
-3- Afficher le Champions qui fait le plus de dégats.
-4- Afficher les Champions les plus faciles à jouer
-5- Afficher les Champions les plus forts à jouer
-6- Afficher les Champions qui possède plus de dégats magique que de dégats physique
-7- Afficher les Champions qui possède les meilleurs stats(somme de tout les stats)
-8- Combien d'attaque aurais gnar si on l'augmente du niveau 3 au niveau 15
-9- Affiche celui qui a le plus de dégat physique au niv 1
-10- Afficher celui qui a le plus de dégat physique au niveau 18
-11- Afficher par ordre décroissant, les champions ayant leurs hp > 1500 au niveau 15
-12- Afficher les items superieur que peut faire la "digger"
-13- Combien d'item "botte" y t'il dans la liste d'item.
+## *Idées-Requete*
 
+<br>
 
-
-- Afficher un histogramme des personnage ayant une vitesse d'attaque < 1.5 / 1.5 <= x > 2.5 / >=2.5 au niveau 1
-- Afficher un histogramme en fonction du libéllé de l'item
+1- Afficher le nombre de champion au total.<br>
+2- Afficher l'identifiant "blitzcrank".<br>
+3- Afficher le Champions qui fait le plus de dégats.<br>
+4- Afficher les Champions qui possède plus de dégats magique que de dégats physique.<br>
+5- Afficher le Champions qui possède les meilleurs stats(somme de tout les stats).<br>
+6- Afficher le personnages avec le plus d'hp au niveau maximum, sans item.<br>
+7- Combien d'attaque aurais gnar si on l'augmente du niveau 3 au niveau 15.<br>
+8- Affiche celui qui a le plus de dégat physique au niv 1.<br>
+9- Afficher celui qui a le plus de dégat physique au niveau 18.<br>
+10- Afficher par ordre décroissant, les champions ayant leurs hp > 1500 au niveau 15.<br>
+11- Afficher les items superieur que peut faire la "digger".<br>
+12- Combien d'item "botte" y t'il dans la liste d'item.<br>
 
 
-- Afficher en camembert le taux des différents Etiquettes(tank, support, ...) 
+
+- Afficher un histogramme des personnage ayant une vitesse d'attaque < 1.5 / 1.5 <= x > 2.5 / >=2.5 au niveau 1.
+- Afficher un histogramme en fonction du libéllé de l'item.
+
+
+- Afficher en camembert le taux des différents Etiquettes(tank, support, ...) .
 - Afficher en camembert le taux des différents types (mana / rage / rien).
 
-- Afficher un diagramme baton en fonction du prix des item
-- Afficher un diagramme des item qui ont ou pas besoin d'autres item pour etre craft
+- Afficher un diagramme baton en fonction du prix des item.
+- Afficher un diagramme des item qui ont ou pas besoin d'autres item pour etre craft.
 
 Comparaison de camembert :
 - Afficher 3 camembert :

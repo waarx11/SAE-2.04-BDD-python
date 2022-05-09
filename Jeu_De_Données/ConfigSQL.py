@@ -3,19 +3,22 @@ from getpass import getpass
 import pandas as pd
 import psycopg2 as psy
 
-def creationTab():
+def creationTab():  #Creation et Insertion des tables
     data=pd.read_csv(r'../Type_of_BDD/riot_champion.csv')
     data2=pd.read_csv(r'../Type_of_BDD/riot_item.csv')
     df1=pd.DataFrame(data)
     df12=df1.drop_duplicates()
     df2=pd.DataFrame(data2)
     df22=df2.drop_duplicates()
+
+    #Drop tout les tables si elles existents
     curs.execute ('''DROP TABLE IF EXISTS tChampion ;''')
     curs.execute ('''DROP TABLE IF EXISTS tLevelUP ;''')
     curs.execute ('''DROP TABLE IF EXISTS tItem ;''')
     curs.execute ('''DROP TABLE IF EXISTS tPossede ;''')
     curs.execute ('''DROP TABLE IF EXISTS tSupp ;''')
 
+    #Creation
     curs.execute ('''CREATE TABLE tChampion(
     cle CHAR(4) PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
@@ -58,7 +61,7 @@ def creationTab():
 
     # curs.execute ('''CREATE TABLE tPossede(
     # idChampion CHAR(4) REFERENCES tChampion(cle),
-    # seperieur CHAR(5) REFERENCES tItem(iDItem)
+    # superieur CHAR(5) REFERENCES tItem(iDItem)
     # );''')
 
     # curs.execute ('''CREATE TABLE tSupp(
@@ -66,9 +69,10 @@ def creationTab():
     # seperieur CHAR(5) REFERENCES tItem(iDItem)
     # );''')
 
+    #Insertion des données dans les tables
     for row in df12.itertuples():
-        curs.execute('''INSERT INTO tChampion VALUES (%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s);''',
-                (row.key , row.name , row.info.attack , row.info.defense , row.info.magic , row.stats.hp , row.stats.mp , row.stats.armor , row.stats.spellblock , row.stats.attackrange , row.stats.movespeed , row.stats.attackspeed , row.stats.mpregen , row.stats.hpregen , row.stats.attackdamage , row.stats.crit))
+        curs.execute('''INSERT INTO tChampion VALUES (%s ,%s ,%s );''',
+                (row.key , row.name , row.info.attack ))
     #     curs.execute('''INSERT INTO tLevelUP VALUES (%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s);''',
     #             (row.key , row.stats.hpperlevel , row.stats.mpperlevel , row.stats.armorperlevel , row.stats.spellblockperlevel , row.stats.mpregenperlevel , row.stats.hpregenperlevel , row.stats.attackdamageperlevel , row.stats.critperlevel)) 
     # for row in df22.itertuples():
@@ -78,26 +82,92 @@ def creationTab():
     # while res is not None:# temps qu'il y a des éléments / lignes dans le fetchone
     #     print (res)
     #     res = curs.fetchone ()
-    df=pd.read_sql('''SELECT COUNT(*) FROM tChampion ;''', con=co)
+    df=pd.read_sql('''SELECT COUNT(*) FROM tChampion ;''', con=co) #Nombre de champion inserer
     print(df)
 
 
-# def requeteSQL():
+def requeteSQL(): #Affichage des informations (Chaque Select est décrit dans le document: "Presentation")
 
-#     df=pd.read_sql('''SELECT COUNT(*) FROM tChampion ;''', con=co)
-#     print(df)
+        # n°1
+    df=pd.read_sql('''SELECT COUNT(*) FROM tChampion ;''', con=co)
+    print(df)
 
-#     df=pd.read_sql('''SELECT * FROM CHAMPION WHERE ID='Blitz' ;''', con=co)
-#     print(df)
+        # n°2
+    df=pd.read_sql('''SELECT * FROM CHAMPION WHERE ID='Blitz' ;''', con=co)
+    print(df)
 
-#     df=pd.read_sql('''SELECT MAX(Dégat) FROM tChampion ;''', con=co)
-#     print(df)
+        # n°3
+    df=pd.read_sql('''SELECT * FROM tChampion Having Max(DommageAutoAtq) ;''', con=co)
+    print(df)
 
-#     df=pd.read_sql('''SELECT MAX(Dégat) FROM tChampion ;''', con=co)
-#     print(df)
+        #n°4
+    df=pd.read_sql('''SELECT * FROM tChampion WHERE attaquePhysique>attaqueMagique ;''', con=co)
+    print(df)
 
-#     df=pd.read_sql('''SELECT MAX(Dégat) FROM tChampion ;''', con=co)
-#     print(df)
+        #n°5
+    df=pd.read_sql('''SELECT * as Meilleurs_Stats 
+                        FROM tChampion 
+                        WHERE ( attaquePhysique + defence + attaqueMagique + hP + mana + armure + resMagique + distanceAttaque + vitDp + vitAttaque + regenMana + regenHp + dommageAutoAtq + critique )
+                        >= (SELECT ( attaquePhysique + defence + attaqueMagique + hP + mana + armure + resMagique + distanceAttaque + vitDp + vitAttaque + regenMana + regenHp + dommageAutoAtq + critique ) FROM tchampion) ;''', con=co)
+    print(df)
+
+        #n°6 (Un champion est maximum niveau 18 et il commence au niveau 1)
+    df=pd.read_sql('''SELECT * 
+                        FROM tChampion c, LevelUp l
+                        WHERE c.Cle=l.idChampion AND (c.hP+l.hp*17) >= (Select (c.hP+l.hp*17) FROM tChampion c, LevelUp l where c.Cle=l.idChampion) ;''', con=co)
+    print(df)
+
+        #n°7 
+    df=pd.read_sql('''SELECT nom, (c.DommageAutoAtq+l.DommageAutoAtq*14) as Degats_Lvl15
+                        FROM tChampion c, LevelUp l
+                        WHERE nom='gnar' ;''', con=co)
+    print(df)
+
+        #n°8
+    df=pd.read_sql('''SELECT nom, max(attaquePhysique) Max_AtkPhys
+                        FROM tChampion c ;''', con=co)
+    print(df)
+
+        #n°9
+    df=pd.read_sql('''SELECT nom, max((c.attaquePhysique + l.attaquePhysique*17)) As Max_AtkPhys_Niv18
+                        FROM tChampion c, LevelUp l
+                        WHERE c.Cle=l.idChampion;''', con=co)
+    print(df)
+
+        #n°10
+    df=pd.read_sql('''SELECT nom, (c.DommageAutoAtq+l.DommageAutoAtq*14) as Degats_Lvl15
+                        FROM tChampion c, LevelUp l
+                        WHERE (c.hp+l.hp*14)>1500
+                        GROUP BY (c.hp+l.hp*14)
+                        ORDER BY DESC;''', con=co)
+    print(df)
+
+        #n°11
+    # df=pd.read_sql('''SELECT nom, (c.DommageAutoAtq+l.DommageAutoAtq*14) as Degats_Lvl15
+    #                     FROM tChampion c, LevelUp l
+    #                     WHERE (c.hp+l.hp*14)>1500
+    #                     GROUP BY (c.hp+l.hp*14);''', con=co)
+    # print(df)
+    
+        #n°12
+    df=pd.read_sql('''SELECT COUNT(*) as Nombre_de_botte
+                        FROM item
+                        WHERE Nom LIKE "%Boots%";''', con=co)
+    print(df)
+
+
+
+# def DiagrammeSQL():
+    #Histogramme
+
+    #Camembert
+
+    #Diagramme en baton
+
+    #Diagramme
+
+    #Comparaison de camembert
+    
 
 
 ident=input("Entrer votre identifiant :")
