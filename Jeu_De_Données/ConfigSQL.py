@@ -23,6 +23,7 @@ def creationTab():  #Creation et Insertion des tables
     cle CHAR(4) PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
     type VARCHAR(50) NOT NULL,
+    partype VARCHAR(30),
     attaquePhysique NUMERIC NOT NULL,
     defence NUMERIC NOT NULL,
     attaqueMagique NUMERIC,
@@ -36,7 +37,7 @@ def creationTab():  #Creation et Insertion des tables
     regenMana NUMERIC,
     regenHp NUMERIC,
     dommageAutoAtq NUMERIC,
-    critique NUMERIC
+    critique NUMERIC 
     );''')
 
     curs.execute ('''CREATE TABLE tLevelUP(
@@ -55,27 +56,17 @@ def creationTab():  #Creation et Insertion des tables
     curs.execute ('''CREATE TABLE tItem(
     iDItem CHAR(5) PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
-    prixAchat NUMERIC NOT NULL,
-    prixVente NUMERIC NOT NULL,
-    libelle VARCHAR(200) NOT NULL
-    );''')
-
-    curs.execute ('''CREATE TABLE tPossede(
+    prixAchat NUMERIC NOT NULL,partytype tPossede(
     idChampion CHAR(4) REFERENCES tChampion(cle),
     idItem CHAR(5) REFERENCES tItem(iDItem)
     );''')
 
-    # curs.execute ('''CREATE TABLE tSupp(
-    # idItem CHAR(5) REFERENCES tItem(iDItem)
-    # seperieur CHAR(5) REFERENCES tItem(iDItem)
-    # );''')
-
     #Insertion des données dans les tables
     for row in df12.itertuples():
-        curs.execute('''INSERT INTO tChampion VALUES (%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s);''',
-                (row.key , row.name , row.tags ,row.info_attack , row.info_defense , row.info_magic , row.stats_hp , row.stats_mp , row.stats_armor , row.stats_spellblock , row.stats_attackrange , row.stats_movespeed , row.stats_attackspeed , row.stats_mpregen , row.stats_hpregen , row.stats_attackdamage , row.stats_crit))
-        curs.execute('''INSERT INTO tLevelUP VALUES (%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s);''',
-                (row.key , row.stats_hpperlevel , row.stats_mpperlevel , row.stats_armorperlevel , row.stats_spellblockperlevel , row.stats_mpregenperlevel , row.stats_hpregenperlevel , row.stats_attackdamageperlevel , row.stats_critperlevel)) 
+        curs.execute('''INSERT INTO tChampion VALUES (%s ,%s ,%s , %s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s);''',
+                (row.key , row.name , row.tags, row.partype ,row.info_attack , row.info_defense , row.info_magic , row.stats_hp , row.stats_mp , row.stats_armor , row.stats_spellblock , row.stats_attackrange , row.stats_movespeed , row.stats_attackspeed , row.stats_mpregen , row.stats_hpregen , row.stats_attackdamage , row.stats_crit))
+        curs.execute('''INSERT INTO tLevelUP VALUES (%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s ,%s, %s);''',
+                (row.key , row.stats_hpperlevel , row.stats_mpperlevel , row.stats_armorperlevel , row.stats_spellblockperlevel , row.stats_mpregenperlevel , row.stats_hpregenperlevel , row.stats_attackdamageperlevel , row.stats_critperlevel,)) 
     for row in df22.itertuples():
         curs.execute('''INSERT INTO tItem VALUES (%s ,%s ,%s ,%s ,%s);''',
                 (row.item_id , row.name , row.buy_price , row.sell_price , row.explain))
@@ -83,14 +74,11 @@ def creationTab():  #Creation et Insertion des tables
     curs.execute('''UPDATE tLevelUP
                     SET critique = 10
                     WHERE idChampion IN (SELECT cle from tChampion WHERE type LIKE '%Fighter%'); ''')
-    # res = curs.fetchone () #prend une ligne de mon curs
-    # while res is not None: # temps qu'il y a des éléments / lignes dans le fetchone
-    #         print (res)
-    # res = curs.fetchone ()
 
-    curs.execute('''UPDATE tLevelUP
-                    SET critique = 10
-                    WHERE idChampion IN (SELECT cle from tChampion WHERE type LIKE '%Fighter%'); ''')
+    #Insertion dans la table tPossede en fonction du type du Champion et l'item qui le correspond
+    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Mage%' and i.nom = 'Boots of Speed' ;''')
+    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Tank%' and (i.nom = 'Abyssal Mask' or i.nom = 'Frozen Heart');''')
+                   
     df=pd.read_sql('''SELECT * FROM tChampion ;''', con=co)
     print(df)
 
@@ -107,7 +95,7 @@ co = None
 try:
 # Connexion à la base
 # Attention ! pensez à remplacer dblogin , login et mot_de_passe
-#avec vos informations
+# avec vos informations
     co = psy. connect (host='berlin',
             database ='db'+ident,
             user= ident,
