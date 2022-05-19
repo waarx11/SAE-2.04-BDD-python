@@ -32,16 +32,13 @@ Notre jeu de donnée comprend les 248 items du jeu. Il faut savoir que certains 
 
 1- Afficher le nombre de champion au total.<br>
 2- Afficher l'identifiant "blitzcrank".<br>
-3- Afficher le Champions qui fait le plus de dégats.<br>
+3- Afficher le Champions qui fait le plus de dégats par coup (sans technique).<br>
 4- Afficher les Champions qui possède plus de dégats magique que de dégats physique.<br>
 5- Afficher le Champions qui possède les meilleurs stats(somme de tout les stats).<br>
 6- Afficher le personnages avec le plus d'hp au niveau maximum, sans item.<br>
 7- Combien d'attaque aurais gnar si on l'augmente du niveau 3 au niveau 15.<br>
-8- Affiche celui qui a le plus de dégat physique au niv 1.<br>
-9- Afficher celui qui a le plus de dégat physique au niveau 18.<br>
-10- Afficher par ordre décroissant, les champions ayant leurs hp > 1500 au niveau 15.<br>
-11- Afficher les items superieur que peut faire la "digger".<br>
-12- Combien d'item "botte" y t'il dans la liste d'item.<br>
+8- Affiche celui qui a le plus de dégat physique .<br>
+9- Combien d'item "botte" y t'il dans la liste d'item.<br>
 
 
 
@@ -53,7 +50,6 @@ Notre jeu de donnée comprend les 248 items du jeu. Il faut savoir que certains 
 - Afficher en camembert le taux des différents types (mana / rage / rien).
 
 - Afficher un diagramme baton en fonction du prix des item.
-- Afficher un diagramme des item qui ont ou pas besoin d'autres item pour etre craft.
 
 Comparaison de camembert :
 - Afficher 3 camembert :
@@ -64,7 +60,7 @@ Comparaison de camembert :
 
 ## MCD
 
-<img src="MCD.png"
+<img src="MCD.xcf"
      alt="MCD"
      style="float: left; margin-right: 40px;" />
 
