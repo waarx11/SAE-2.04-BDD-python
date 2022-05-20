@@ -87,6 +87,8 @@ Nous allons commencer par la description des diagrammes circulaires.
 
 <br>
 
+<br>
+
 Dans ce diagramme, nous faisons une étude sur les caractéristiques des champions. En effet, nous voulons savoir le pourcentage de chaque rôle de personnage qui est présent dans le jeu. Il y a plusieurs, nous avons des Mage, Support, Tank, Assassin et les Combattants (‘Fighter’). Comme nous pouvons le voir ci-dessus, nous avons une majorité de fighter avec 27.47% des champions, suivi de près par les mages 24.89% des champions. Puis enfin, nous avoir 18.45% de tank, 15.45% d'assassin et 13.73% support
 
 Pour être plus précis, nous avons 64 fighter, 58 mages, 43 tanks, 36 assassins et 32 supports. Il faut aussi savoir qu'un champion peut avoir plusieurs rôle ce qui expliquer que l'addition de tous les rôles donne un nombre supérieur au nombre total de champion qui est de 148.
