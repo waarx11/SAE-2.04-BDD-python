@@ -99,7 +99,9 @@ Pour être plus précis, nous avons 64 fighter, 58 mages, 43 tanks, 36 assassins
 <img src="TypeChamp.png"
      alt="TypeChamp"
      style="float: left; margin-right: 40px;" />
-     
+
+<br>
+
 Ce diagramme nous permet de connaitre en pourcentage ce que consomme chaque champion pour le combat. Le type mana est sans aucun doute le type le plus utilisé du jeu avec ces 85.14% de champions qui s'en sert. Vient ensuite le type énergie qui est lui utilisé à hauteur de 5.41%. 
 
 Il reste donc le type rage et sang utiliser respectivement à hauteur de 4.73% et 1.35%. Pour finir il y a également des personnages qui n’utilisent pas d'énergie et ce dernier représente 3.38% des champions du jeu.
@@ -109,6 +111,8 @@ Il reste donc le type rage et sang utiliser respectivement à hauteur de 4.73% e
 <img src="Compare.png"
      alt="Compare"
      style="float: left; margin-right: 40px;" />
+
+<br>
 
 Passons maintenant aux choses sérieuses, nous allons faire une étude de l'évolution de mana max de l'ensemble des champions en fonction de leurs niveaux. En effet, à chaque niveau, les champions upgradent leurs manas max.
 
@@ -144,6 +148,7 @@ Nous allons continuer par la description de diagramme circulaire.
 Ici, comme nous le montre le graph, nous affichons le nombre d'item par rapport au type de l'item. Ici, on peut remarquer que nous avons majoritairement des items de Heal/vie. Suivi par des items pour augmenter le damage/dégât. Nous avons malheureusement des items dont nous n'avons pas pu déterminer le type précisément, donc ils sont multi types. Les items ‘Actifs' sont des items qui donne des states, mais qui offre la possibilité de l'activer comme une compétence dans une partie. L'objectif sera de permettre à l’utilisateur de se rendre compte des répartitions majeures des types d'item.
 
 ### Courbe
+<br>
 
 Pour finir, nous allons faire une étude d'une courbe.
 <br>
