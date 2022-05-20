@@ -2,7 +2,7 @@ import psycopg2 as psy
 from getpass import getpass
 import pandas as pd
 
-def creationTab():  #Creation et Insertion des tables
+def creationTab():  #Création et Insertion des tables
     data=pd.read_csv(r'../Type_of_BDD/riot_champion.csv')
     data2=pd.read_csv(r'../Type_of_BDD/riot_item.csv')
     df1=pd.DataFrame(data)
@@ -10,13 +10,13 @@ def creationTab():  #Creation et Insertion des tables
     df2=pd.DataFrame(data2)
     df22=df2.drop_duplicates()
 
-    #Drop tout les tables si elles existents
+    #Drop tous les tables si elles existent
     curs.execute ('''DROP TABLE IF EXISTS tPossede ;''')
     curs.execute ('''DROP TABLE IF EXISTS tLevelUP ;''')
     curs.execute ('''DROP TABLE IF EXISTS tItem ;''')
     curs.execute ('''DROP TABLE IF EXISTS tChampion ;''')
 
-      #Creation
+    #Création
     curs.execute ('''CREATE TABLE tChampion(
     cle CHAR(4) PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
@@ -75,22 +75,22 @@ def creationTab():  #Creation et Insertion des tables
         curs.execute ('''INSERT INTO tItem VALUES (%s ,%s ,%s ,%s ,%s);''',
                 (row.item_id , row.name , row.buy_price , row.sell_price , row.tag))
                 
-    #On ajoute 10% de coup critique
+    #On ajoute 10% de coup critique aux combattants
     curs.execute('''UPDATE tLevelUP
                     SET critique = 10
                     WHERE idChampion IN (SELECT cle from tChampion WHERE type LIKE '%Fighter%'); ''')
 
     #Insertion dans la table tPossede en fonction du type du Champion et l'item qui le correspond
     curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Mage%' and i.nom = 'Boots of Speed' ;''') #Pour les personnages de type Mage on leur ajoute des bottes de vitesse
-    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Tank%' and (i.nom = 'Abyssal Mask' or i.nom = 'Frozen Heart');''')#Pour les personnage de type tank (encaisse les attaques) on leur ajoute l'item masque abyssal et Coeur gelé
-    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Support%' and i.libelle = 'ManaRegen';''') #Pour les supports(Personnage senser aider ses camarades) ils posséderont des items de régéneration d'énergie.
-    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Assassin%' and i.libelle = 'CriticalStrike';''') #Pour les personnages de type Assassin, ils posséderont des items de type Critique pour les dégats
+    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Tank%' and (i.nom = 'Abyssal Mask' or i.nom = 'Frozen Heart');''') #Pour les personnages de type tank (encaisse les attaques) on leur ajoute l'item masque abyssal et Cœur gelé
+    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Support%' and i.libelle = 'ManaRegen';''') #Pour les supports (Personnage sensé aider ses camarades) ils posséderont des items de régénération d'énergie.
+    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Assassin%' and i.libelle = 'CriticalStrike';''') #Pour les personnages de type Assassin, ils posséderont des items de type Critique pour les dégâts
 
     df=pd.read_sql('''SELECT * FROM tChampion ;''', con=co)
     print(df)
 
 
-
+#L'authentification à la base de données
 ident=input("Entrer votre identifiant :")
 print ("Entrer votre mot de pass !")
 password = getpass()
@@ -99,7 +99,7 @@ co = None
 try:
 # Connexion à la base
 # Attention ! pensez à remplacer dblogin , login et mot_de_passe
-# avec vos informations
+# Avec vos informations
     co = psy. connect (host='berlin',
             database ='db'+ident,
             user= ident,
