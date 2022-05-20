@@ -3,7 +3,7 @@ import psycopg2 as psy
 from getpass import getpass
 import pandas as pd
 import matplotlib.pyplot as plt
-from dotenv import load_dotenv
+
 
 def requeteSQL(): #Affichage des informations (Chaque Select est décrit dans le document: "Presentation")
 # Connexion à la base
@@ -81,23 +81,99 @@ def DiagrammeSQL():
 
     # Afficher un histogramme des personnage ayant une vitesse d'attaque < 1.5 / 1.5 <= x > 2.5 / >=2.5 au niveau 1.
 
-    df = pd.read_sql(''' SELECT count(c.vitAttaque) 1.5, count(c1.vitAttaque) 1.5_2.5, count(c2.vitAttaque) 2.5
-    #                      FROM tChampion c, tChampion c1, tChampion c2, 
-    #                      WHERE c.vitAttaque < 1.5 AND c1.vitAttaque >= 1.5  AND c1.vitAttaque < 2.5 AND c2.vitAttaque  ''', con = co)
-    df.plot(x="Personnage", y=['< 1.5', '1.5 <= x > 2.5', '>= 2.5'], legend = False, kind = 'bar')
-    df.set_title('Diagramme Baton')
-    df.set_xlabel('Personnage')
-    df.set_ylabel('Type de capacité')
-    plt.show()
+    # df = pd.read_sql(''' SELECT (SELECT count(vitAttaque)
+    #                             FROM tChampion
+    #                             WHERE vitAttaque < 1.5) vitFaible,
+    #                             (SELECT count(vitAttaque)
+    #                             FROM tChampion
+    #                             WHERE vitAttaque >= 1.5 AND vitAttaque < 2.5) vitMoy,
+    #                             (SELECT count(vitAttaque)
+    #                             FROM tChampion
+    #                             WHERE vitAttaque > 2.5) vitRapide  ''', con = co)
+    # df.plot(x="nbChampion", y=['vitFaible', 'vitMoy', 'vitRapide'], legend = False, kind = 'bar')
+    # df.set_title('Diagramme Baton')
+    # df.set_xlabel('tranche vitesse atk')
+    # df.set_ylabel('nombre de champion')
+    # plt.show()
     
     
 
     # Afficher un histogramme en fonction du libéllé de l'item.
 
+    
+
+    #Digramme par la moyenne des prix de vente des items par libelle
+    
+    df = pd.read_sql('''SELECT TRUNC(AVG(prixVente),2) AS prixVentes, libelle
+    FROM tItem
+    GROUP BY libelle
+    ORDER BY prixVentes DESC;''', con=co)
+
+    fig2 = df2.plot(x='prixVentes',y='libelle')
+    fig2.set_title('Moyenne des prix de vente des items par libelle')
+    fig2.set_xlabel('libelle')
+    fig2.set_ylabel('prixVentes (en Or)')
+    # fig2.set_xticks(df.index)
+    # fig2.set_xticklabels(df['libelle'],rotation='60')
+    plt.show()
+
 
 def Camembert():
 
     #Camembert
+
+    # df7 = pd.read_sql(''' SELECT (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'Boots') Botte,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'Mana') Mana,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'ManaRegen') RegenMana,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'Health') Hp,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'HealtRegen') RegenHp,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'CriticalStrike')CriticalStrike,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'Armor') Armure,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'SpellBlock') ResMagik,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'SpellDamage') PuissanceMagik,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'Damage')DommagePhys,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'AttackSpeed') VitAtk,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'Consumable') Consommable,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'Active') Ward,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'ArmorPenetration') PenetrationArmure,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle = 'MagicPenetration') PenetrationMagik,
+    #                             (SELECT count(libelle)
+    #                             FROM tItem
+    #                             WHERE libelle IS NULL) Rien ; ''', con = co)
+    # df7=df7.transpose()
+    # df7.plot(y=0, kind='pie',labels=['Botte', 'Mana', 'RegenMana', 'Hp', 'RegenHp', 'CriticalStrike', 'Armure', 'ResMagik', 'PuissanceMagik','DommagePhys', 'VitAtk', 'Consommable', 'Ward', 'PénétrationArmure', 'PénétrationMagik', 'Rien'],legend=True,autopct=lambda x: str(round(x,2))+ '%')
+    # df7.set_title('Class Item')
+    # plt.show()
 
     # Afficher en camembert le taux des différents Etiquettes(tank, support, ...).
 
@@ -239,6 +315,7 @@ try:
     curs = co.cursor()
     #requeteSQL()
     DiagrammeSQL()
+    #Camembert()
 
     co.commit ()
     curs.close ()

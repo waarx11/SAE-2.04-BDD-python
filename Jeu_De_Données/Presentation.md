@@ -39,6 +39,7 @@ Notre jeu de donnée comprend les 248 items du jeu. Il faut savoir que certains 
 7- Combien d'attaque aurais gnar si on l'augmente du niveau 3 au niveau 15.<br>
 8- Affiche celui qui a le plus de dégat physique .<br>
 9- Combien d'item "botte" y t'il dans la liste d'item.<br>
+10- <br>
 
 
 
@@ -65,4 +66,8 @@ Comparaison de camembert :
      style="float: left; margin-right: 40px;" />
 
 <br>
+
+## Description des diagrammes
+
+
 

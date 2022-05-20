@@ -73,7 +73,7 @@ def creationTab():  #Creation et Insertion des tables
                 (row.key , row.stats_hpperlevel , row.stats_mpperlevel , row.stats_armorperlevel , row.stats_spellblockperlevel , row.stats_mpregenperlevel , row.stats_hpregenperlevel , row.stats_attackdamageperlevel , row.stats_critperlevel, row.stats_attackspeedperlevel)) 
     for row in df22.itertuples():
         curs.execute ('''INSERT INTO tItem VALUES (%s ,%s ,%s ,%s ,%s);''',
-                (row.item_id , row.name , row.buy_price , row.sell_price , row.explain))
+                (row.item_id , row.name , row.buy_price , row.sell_price , row.tag))
                 
     #On ajoute 10% de coup critique
     curs.execute('''UPDATE tLevelUP

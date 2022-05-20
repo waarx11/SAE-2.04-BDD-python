@@ -13,8 +13,8 @@
 0,1036,Long Sword,"['3077', '3123', '1053', '3155', '3134', '3179', '3035', '3044', '3052', '3072', '3133', '3144', '3161']",Slightly increases Attack Damage,350,245,Damage
 0,1037,Pickaxe,"['3124', '3004', '3008', '3031', '3036', '3053', '3074', '3814', '3139']",Moderately increases Attack Damage,875,613,Damage
 0,1038,B. F. Sword,"['3095', '3026', '3031', '3072', '3161', '3508']",Greatly increases Attack Damage,1300,910,Damage
-0,1039,Hunter's Talisman,"['3706', '3715']",Provides damage against Monsters and Mana Regen in the Jungle,350,245,LifeSteal
-0,1041,Hunter's Machete,"['3706', '3715']",Provides damage and life steal versus Monsters,350,245,LifeSteal
+0,1039,Hunter's Talisman,"['3706', '3715']",Provides damage against Monsters and Mana Regen in the Jungle,350,245,Damage
+0,1041,Hunter's Machete,"['3706', '3715']",Provides damage and life steal versus Monsters,350,245,Damage
 0,1042,Dagger,"['1043', '3091', '3006', '2015', '3085', '3086', '3046', '3101']",Slightly increases Attack Speed,300,210,AttackSpeed
 0,1043,Recurve Bow,"['3091', '3153', '3124', '3675', '1416', '1419']",Greatly increases Attack Speed,400,700,AttackSpeed
 0,1052,Amplifying Tome,"['3108', '3191', '3136', '3135', '3145', '3113', '3124', '3116', '3673', '3802', '3916']",Slightly increases Ability Power,435,305,SpellDamage
@@ -52,10 +52,10 @@
 0,2140,Elixir of Wrath,,Temporarily grants Attack Damage and heals you when dealing physical damage to champions.,500,200,Consumable
 0,2403,Minion Dematerializer,,,0,0,
 0,2419,Commencing Stopwatch,['2420'],,0,0,Active
-0,2420,Stopwatch,"['3157', '3026', '3193']",Activate to become invincible but unable to take actions,650,260,Active
+0,2420,Stopwatch,"['3157', '3026', '3193']",Activate to become invincible but unable to take actions,650,260,SpellDamage
 0,2421,Broken Stopwatch,"['3157', '3026', '3193']",Upgrades to stopwatch,650,260,
 0,2422,Slightly Magical Boots,"['3006', '3047', '3020', '3158', '3111', '3117', '3009']",Slightly increases Movement Speed,300,210,Boots
-0,2423,Perfectly Timed Stopwatch,"['3157', '3026', '3193']",Activate to become invincible but unable to take actions,650,260,Active
+0,2423,Perfectly Timed Stopwatch,"['3157', '3026', '3193']",Activate to become invincible but unable to take actions,650,260,Consumable
 0,2424,Broken Stopwatch,"['3157', '3026', '3193']",,650,260,
 0,3001,Abyssal Mask,['3379'],Nearby enemies take more magic damage,1180,2100,Health
 0,3003,Archangel's Staff,,Increases Ability Power based on maximum Mana,1050,2240,SpellDamage
@@ -78,7 +78,7 @@
 0,3033,Mortal Reminder,,Overcomes enemies with high Health recovery and Armor,550,1960,ArmorPenetration
 0,3035,Last Whisper,"['3033', '3036']",Overcomes enemies with high Armor,750,1015,ArmorPenetration
 0,3036,Lord Dominik's Regards,,Overcomes enemies with high health and armor,475,1960,Damage
-0,3040,Seraph's Embrace,,,3200,2240,Active
+0,3040,Seraph's Embrace,,,3200,2240,Armor
 0,3041,Mejai's Soulstealer,,Grants Ability Power for kills and assists,1050,980,SpellDamage
 0,3042,Muramana,,,2400,1680,OnHit
 0,3043,Muramana,,,2400,1680,OnHit
@@ -90,8 +90,8 @@
 0,3052,Jaurim's Fist,"['3022', '3053', '3748']",Attack Damage and stacking Health on Unit Kill,450,840,Health
 0,3053,Sterak's Gage,,Shields against large bursts of damage,725,2240,Health
 0,3057,Sheen,"['3078', '3100', '3025']",Grants a bonus to next attack after spell cast,700,735,Mana
-0,3065,Spirit Visage,,Increases Health and healing effects,800,1960,CooldownReduction
-0,3067,Kindlegem,"['3065', '3071', '3109', '3083', '3152', '3161']",Increases Health and Cooldown Reduction,400,560,CooldownReduction
+0,3065,Spirit Visage,,Increases Health and healing effects,800,1960,Health
+0,3067,Kindlegem,"['3065', '3071', '3109', '3083', '3152', '3161']",Increases Health and Cooldown Reduction,400,560,Damage
 0,3068,Sunfire Cape,['3373'],Constantly deals damage to nearby enemies,650,1925,Armor
 0,3070,Tear of the Goddess,"['3003', '3004']",Increases maximum Mana as Mana is spent,375,595,Mana
 0,3071,Black Cleaver,['3380'],Dealing physical damage to enemy champions reduces their Armor,950,2100,ArmorPenetration
@@ -117,13 +117,13 @@
 0,3102,Banshee's Veil,,Periodically blocks enemy abilities,800,2100,SpellBlock
 0,3105,Aegis of the Legion,"['3190', '3050', '3812']",Grants Armor and Magic Resistance,350,770,SpellBlock
 0,3107,Redemption,['3382'],Activate to heal allies and damage enemies in an area,650,1470,Health
-0,3108,Fiendish Codex,"['3174', '3115', '3157', '1402', '1414', '3102', '3905']",Increases Ability Power and Cooldown Reduction,465,630,CooldownReduction
+0,3108,Fiendish Codex,"['3174', '3115', '3157', '1402', '1414', '3102', '3905']",Increases Ability Power and Cooldown Reduction,465,630,SpellDamage
 0,3109,Knight's Vow,,Partner with an ally to protect each other,600,1540,Health
 0,3110,Frozen Heart,,Massively increases Armor and slows enemy basic attacks,800,1890,Armor
 0,3111,Mercury's Treads,,Increases Movement Speed and reduces duration of disabling effects,350,770,Boots
 0,3112,Guardian's Orb,,Good starting item for mages,950,380,Health
-0,3113,Aether Wisp,"['3100', '3504', '3673', '3905', '3907']",Increases Ability Power and Movement Speed,415,595,NonbootsMovement
-0,3114,Forbidden Idol,"['2065', '3107', '3222', '3504']","Increases Heal and Shield Power, Mana Regeneration, and Cooldown Reduction",550,560,CooldownReduction
+0,3113,Aether Wisp,"['3100', '3504', '3673', '3905', '3907']",Increases Ability Power and Movement Speed,415,595,Boots
+0,3114,Forbidden Idol,"['2065', '3107', '3222', '3504']","Increases Heal and Shield Power, Mana Regeneration, and Cooldown Reduction",550,560,SpellBlock
 0,3115,Nashor's Tooth,,"Increases Attack Speed, Ability Power, and Cooldown Reduction",1000,2100,AttackSpeed
 0,3116,Rylai's Crystal Scepter,,Abilities slow enemies,915,1820,Health
 0,3117,Boots of Mobility,,Greatly enhances Movement Speed when out of combat,700,700,Boots
@@ -168,7 +168,7 @@
 0,3222,Mikael's Crucible,,Activate to remove all disabling effects from an allied champion,500,1470,SpellBlock
 0,3285,Luden's Echo,['3390'],"Increases Ability Power, Mana, and Cooldown Reduction",1050,2240,SpellDamage
 0,3340,Warding Totem (Trinket),,Periodically place a Stealth Ward,0,0,Active
-0,3348,Arcane Sweeper,,Activate to reveal a nearby area of the map,0,0,Vision
+0,3348,Arcane Sweeper,,Activate to reveal a nearby area of the map,0,0,Active
 0,3361,Greater Stealth Totem (Trinket),,Periodically place a Stealth Ward,250,175,Active
 0,3362,Greater Vision Totem (Trinket),,Periodically place a Vision Ward,250,175,Active
 0,3363,Farsight Alteration,,Grants increased range and reveals the targetted area,0,0,Active
@@ -191,7 +191,7 @@
 0,3416,Head of Kha'Zix,,,0,0,Active
 0,3422,Head of Kha'Zix,,,0,0,Active
 0,3455,Head of Kha'Zix,,,0,0,Active
-0,3504,Ardent Censer,,Shield and heal effects on other units grant both of you Attack Speed and their attacks deal additional on-hit magic damage.,650,1610,CooldownReduction
+0,3504,Ardent Censer,,Shield and heal effects on other units grant both of you Attack Speed and their attacks deal additional on-hit magic damage.,650,1610,AttackSpeed
 0,3508,Essence Reaver,,"Grants Critical Strike Chance, Cooldown Reduction, Attack Damage and restores mana on hit.",100,2310,Damage
 0,3513,Eye of the Herald,,Eye of the Herald - a Gift of the Void.,0,0,Trinket
 0,3514,Eye of the Herald,,Eye of the Herald - a Gift of the Void.,0,0,Trinket
@@ -214,8 +214,8 @@
 0,3693,Gravity Boots,,,0,0,
 0,3694,Cloak of Stars,,,0,0,
 0,3695,Dark Star Sigil,,,0,0,
-0,3706,Stalker's Blade,"['1401', '1400', '1402', '1416']",Lets your Smite slow Champions,300,700,LifeSteal
-0,3715,Skirmisher's Sabre,"['1412', '1413', '1414', '1419']","Lets your Smite mark Champions, giving you combat power against them.",300,700,LifeSteal
+0,3706,Stalker's Blade,"['1401', '1400', '1402', '1416']",Lets your Smite slow Champions,300,700,Damage
+0,3715,Skirmisher's Sabre,"['1412', '1413', '1414', '1419']","Lets your Smite mark Champions, giving you combat power against them.",300,700,Damage
 0,3742,Dead Man's Plate,,Build momentum as you move around then smash into enemies.,1100,2030,Health
 0,3748,Titanic Hydra,,Deals area of effect damage based on owner's health,575,2450,Health
 0,3751,Bami's Cinder,"['3068', '1401', '1413', '3672']",Grants Health and Immolate Aura,500,630,Health
@@ -225,8 +225,8 @@
 0,3812,Death's Dance,,Trades incoming damage now for incoming damage later,500,2520,SpellBlock
 0,3814,Edge of Night,,Periodically blocks enemy abilities,525,2030,Health
 0,3850,Spellthief's Edge,,Gain gold and upgrade by damaging enemy champions,400,160,Health
-0,3851,Frostfang,,,400,160,GoldPer
-0,3853,Shard of True Ice,,,400,160,GoldPer
+0,3851,Frostfang,,,400,160,
+0,3853,Shard of True Ice,,,400,160,
 0,3854,Steel Shoulderguards,,Gain gold and upgrade by executing minions alongside allies,400,160,Health
 0,3855,Runesteel Spaulders,,,400,160,Health
 0,3857,Pauldrons of Whiterock,,,400,160,Health
