@@ -71,6 +71,7 @@ Comparaison de camembert :
      style="float: left; margin-right: 40px;" />
 
 <br>
+<br>
 
 ## Description des diagrammes
 
@@ -83,6 +84,8 @@ Nous allons commencer par la description des diagrammes circulaires.
      alt="Role"
      style="float: left; margin-right: 40px;" />
 
+
+<br>
 
 Dans ce diagramme, nous faisons une étude sur les caractéristiques des champions. En effet, nous voulons savoir le pourcentage de chaque rôle de personnage qui est présent dans le jeu. Il y a plusieurs, nous avons des Mage, Support, Tank, Assassin et les Combattants (‘Fighter’). Comme nous pouvons le voir ci-dessus, nous avons une majorité de fighter avec 27.47% des champions, suivi de près par les mages 24.89% des champions. Puis enfin, nous avoir 18.45% de tank, 15.45% d'assassin et 13.73% support
 
@@ -99,11 +102,7 @@ Ce diagramme nous permet de connaitre en pourcentage ce que consomme chaque cham
 
 Il reste donc le type rage et sang utiliser respectivement à hauteur de 4.73% et 1.35%. Pour finir il y a également des personnages qui n’utilisent pas d'énergie et ce dernier représente 3.38% des champions du jeu.
 
-
-
 <br>
-
-
 
 <img src="Compare.png"
      alt="Compare"
@@ -148,7 +147,11 @@ Pour finir, nous allons faire une étude d'une courbe.
 <br>
 
 <img src="PrixTypeItem.png"
-     alt="Change"
+     alt="MoyenneType"
      style="float: left; margin-right: 40px;" />
 
 Dans ce document, nous offrons la possibilité d'afficher les items qui coute le plus cher aux joueurs en fonction du type de l'item. Comme nous pouvons le voir, les items qui reviennent le plus cher aux joueurs seront la pénétration magique et physique. Il est intéressant de remarquer, qu'apporter de la vision de jeu, qui est très important lors d'une partie, ne coute pas grand-chose.
+
+<img src="NbItemUtiliser.png"
+     alt="Change"
+     style="float: left; margin-right: 40px;" />
