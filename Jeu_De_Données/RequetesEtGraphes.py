@@ -4,7 +4,6 @@ from getpass import getpass
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
 def requeteSQL(): #Affichage des informations (Chaque Select est décrit dans le document: "Presentation")
 # Connexion à la base
 # Attention ! pensez à remplacer dblogin , login et mot_de_passe
@@ -102,19 +101,18 @@ def DiagrammeSQL():
 
     
 
-    #Digramme par la moyenne des prix de vente des items par libelle
+    #Diagramme par la moyenne des prix de vente des items par libelle
     
-    df = pd.read_sql('''SELECT TRUNC(AVG(prixVente),2) AS prixVentes, libelle
+    df = pd.read_sql('''SELECT TRUNC(AVG(prixVente),2) prixventes, libelle
     FROM tItem
     GROUP BY libelle
-    ORDER BY prixVentes DESC;''', con=co)
+    ORDER BY prixventes DESC;''', con=co)
 
-    fig2 = df2.plot(x='prixVentes',y='libelle')
+    fig2 = df.plot(x='libelle',y='prixventes')
     fig2.set_title('Moyenne des prix de vente des items par libelle')
-    fig2.set_xlabel('libelle')
+    fig2.set_xlabel('Type')
     fig2.set_ylabel('prixVentes (en Or)')
-    # fig2.set_xticks(df.index)
-    # fig2.set_xticklabels(df['libelle'],rotation='60')
+
     plt.show()
 
 
@@ -189,14 +187,11 @@ def Camembert():
                             (SELECT count(type) 
                                     FROM tChampion 
                                     WHERE type Like '%Fighter%') Fighter,
-                            (SELECT count(type)
-                                    FROM tChampion 
-                                    WHERE type Like '%Tireur%') Tireur,
                             (SELECT count(type) 
                                     FROM tChampion 
                                     WHERE type Like '%Assassin%') Assassin;''', con = co)
     df=df.transpose()
-    fig= df.plot(y=0, kind='pie',labels=['Tank','Support','Mage','Fighters','Tireur','Assassin'],legend=True,autopct=lambda x: str(round(x,2))+ '%')
+    fig= df.plot(y=0, kind='pie',labels=['Tank','Support','Mage','Fighters','Assassin'],legend=True,autopct=lambda x: str(round(x,2))+ '%')
     fig.set_title('Classification des Rôles')
     plt.show()
 
@@ -237,8 +232,9 @@ def Camembert():
                             WHERE c.cle = l.idChampion and ((c.mana)+l.mana*2)>950) ManaSupérieur;
 ''', con=co)
 
+        #niveau 7
     df2 = pd.read_sql('''SELECT (SELECT COUNT(*) 
-                            FROM tChampion c, tLevelUP l
+                1            FROM tChampion c, tLevelUP l
                             WHERE c.cle = l.idChampion and ((c.mana)+l.mana*6)<450) ManaInférieur,
                             (SELECT COUNT(*) 
                             FROM tChampion c, tLevelUP l
@@ -248,6 +244,7 @@ def Camembert():
                             WHERE c.cle = l.idChampion and ((c.mana)+l.mana*6)>950) ManaSupérieur;
 ''', con=co)
 
+        #niveau 14
     df3 = pd.read_sql('''SELECT (SELECT COUNT(*) 
                             FROM tChampion c, tLevelUP l
                             WHERE c.cle = l.idChampion and ((c.mana)+l.mana*13)<450) ManaInférieur,
@@ -259,6 +256,7 @@ def Camembert():
                             WHERE c.cle = l.idChampion and ((c.mana)+l.mana*13)>950) ManaSupérieur;
 ''', con=co)
 
+        #niveau 17
     df4 = pd.read_sql('''SELECT (SELECT COUNT(*) 
                             FROM tChampion c, tLevelUP l
                             WHERE c.cle = l.idChampion and ((c.mana)+l.mana*17)<450) ManaInférieur,
