@@ -80,10 +80,12 @@ def creationTab():  #Creation et Insertion des tables
                     SET critique = 10
                     WHERE idChampion IN (SELECT cle from tChampion WHERE type LIKE '%Fighter%'); ''')
 
-    # #Insertion dans la table tPossede en fonction du type du Champion et l'item qui le correspond
-    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Mage%' and i.nom = 'Boots of Speed' ;''') #pour les personnages de type Mage on leur ajoute des bottes de vitesse
-    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Tank%' and (i.nom = 'Abyssal Mask' or i.nom = 'Frozen Heart');''')#pour les personnage de type tank (encaisse les attaques) on leur ajoute l'item masque abyssal et Coeur gelé
-                   
+    #Insertion dans la table tPossede en fonction du type du Champion et l'item qui le correspond
+    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Mage%' and i.nom = 'Boots of Speed' ;''') #Pour les personnages de type Mage on leur ajoute des bottes de vitesse
+    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Tank%' and (i.nom = 'Abyssal Mask' or i.nom = 'Frozen Heart');''')#Pour les personnage de type tank (encaisse les attaques) on leur ajoute l'item masque abyssal et Coeur gelé
+    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Support%' and i.libelle = 'ManaRegen';''') #Pour les supports(Personnage senser aider ses camarades) ils posséderont des items de régéneration d'énergie.
+    curs.execute('''INSERT INTO tPossede SELECT cle, iDItem FROM tChampion, tItem i WHERE type LIKE '%Assassin%' and i.libelle = 'CriticalStrike';''') #Pour les personnages de type Assassin, ils posséderont des items de type Critique pour les dégats
+
     df=pd.read_sql('''SELECT * FROM tChampion ;''', con=co)
     print(df)
 
